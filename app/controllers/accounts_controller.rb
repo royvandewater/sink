@@ -1,32 +1,30 @@
 class AccountsController < ApplicationController
-  def index
-  end
+  before_filter :find_account, :only => :show
 
   def create
     @account = Account.create!
 
-    @rdio ||= Rdio.new([RDIO_KEY, RDIO_SECRET])
-    url = @rdio.begin_authentication account_url @account
-
-    rdio_token, rdio_secret = @rdio.token
-
-    @account.update_attributes :rdio_token => rdio_token, :rdio_secret => rdio_secret
-
+    url = rdio.begin_authentication account_url @account
+    @account.update_attributes :rdio_key => rdio.token[0], :rdio_secret => rdio.token[1]
     redirect_to url
   end
 
   def show
-    @account = Account.where(:id => params[:id]).first
     if params[:oauth_verifier] && params[:oauth_token]
-      @rdio ||= Rdio.new([RDIO_KEY, RDIO_SECRET], [@account.rdio_token, @account.rdio_secret])
-      @rdio.complete_authentication params[:oauth_verifier]
-
-      rdio_token, rdio_secret = @rdio.token
-      @account.update_attributes :rdio_token => rdio_token, :rdio_secret => rdio_secret
+      rdio.complete_authentication params[:oauth_verifier]
+      @account.update_attributes :rdio_key => rdio.token[0], :rdio_secret => rdio.token[1]
+      session[:rdio_key] = @account.rdio_key
     end
+
+    redirect_to root_url
   end
 
   protected
+  def find_account
+    @account = Account.where(:id => params[:id]).first
+  end
+
   def rdio
+    @rdio ||= Rdio.new(RDIO_TOKEN, @account.try(:rdio_token))
   end
 end
