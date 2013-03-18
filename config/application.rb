@@ -21,3 +21,6 @@ module Sink
     # config.i18n.default_locale = :de
   end
 end
+
+RDIO_KEY    = ENV['RDIO_KEY']
+RDIO_SECRET = ENV['RDIO_SECRET']
