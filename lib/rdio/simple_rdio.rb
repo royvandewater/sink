@@ -23,7 +23,7 @@ require 'net/http'
 require 'cgi'
 require 'json'
 
-class Rdio
+class SimpleRdio
   # the consumer and token can be accessed
   attr_accessor :consumer, :token
 
@@ -78,5 +78,4 @@ class Rdio
   def method_missing(method, *params)
     call(method.to_s, params[0])
   end
-
 end

@@ -1,3 +1,25 @@
-<%= form_for Account.new do |f| -%>
-  <%= f.submit 'Login with Rdio', :class => 'btn btn-large btn-primary' %>
-<% end -%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sign in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%= stylesheet_link_tag "login", media: "all", "data-turbolinks-track" => true %>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+
+      <%= form_for Account.new, :html => {:class => 'form-signin'} do |f| -%>
+        <h3>Sink requires Rdio to work</h3>
+        <%= f.submit 'Login with Rdio', :class => 'btn btn-large btn-primary' %>
+      <% end -%>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
+

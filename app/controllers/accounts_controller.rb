@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   before_filter :find_account, :only => :show
+  layout false
 
   def create
     @account = Account.create!

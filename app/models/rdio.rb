@@ -1,0 +1,2 @@
+class Rdio < SimpleRdio
+end
