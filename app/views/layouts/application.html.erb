@@ -13,9 +13,16 @@
     <div class="masthead">
       <ul class="nav nav-pills pull-right">
         <li><a href="/">Home</a></li>
-        <li><a href="#">Login</a></li>
+        <li>
+          <%= form_for current_user do |f| %>
+            <%= f.hidden_field :rdio_key, :value => nil %>
+            <%= f.submit 'Logout', :class => 'btn' %>
+          <% end %>
+        </li>
       </ul>
-      <h3 class="muted">Sink</h3>
+      <h3>
+        <%= link_to 'Sink', root_path, :class => 'brand muted' %>
+      </h3>
     </div>
 
     <hr>

@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_filter :find_account, :only => :show
+  before_filter :find_account, :only => [:show, :update]
   layout false
 
   def create
@@ -13,10 +13,27 @@ class AccountsController < ApplicationController
   def show
     if params[:oauth_verifier] && params[:oauth_token]
       rdio.complete_authentication params[:oauth_verifier]
-      @account.update_attributes :rdio_key => rdio.token[0], :rdio_secret => rdio.token[1]
+
+      @old_account = Account.where(:username => rdio.username).first
+      if @old_account
+        @account.destroy
+        @account = @old_account
+      end
+
+      @account.update_attributes({
+        :rdio_key    => rdio.token[0],
+        :rdio_secret => rdio.token[1],
+        :username    => rdio.username,
+      })
+
       session[:rdio_key] = @account.rdio_key
     end
 
+    redirect_to root_url
+  end
+
+  def update
+    @account.update_attributes account_params
     redirect_to root_url
   end
 
@@ -26,6 +43,10 @@ class AccountsController < ApplicationController
   end
 
   def rdio
-    @rdio ||= Rdio.new(RDIO_TOKEN, @account.try(:rdio_token))
+    @rdio ||= @account.try(:rdio) || Rdio.new(RDIO_TOKEN)
+  end
+
+  def account_params
+    params.require(:account).permit :rdio_key
   end
 end
