@@ -1,0 +1,13 @@
+<div class="masthead">
+  <ul class="nav nav-pills pull-right">
+    <li><a href="/">Home</a></li>
+    <li>
+      <form class="logout">
+        <input type="submit" value="Logout" class="btn" />
+      </form>
+    </li>
+  </ul>
+  <h3>
+    <a href="/" class="brand muted">Sink</a>
+  </h3>
+</div>
