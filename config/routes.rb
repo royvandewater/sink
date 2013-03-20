@@ -7,6 +7,12 @@ Sink::Application.routes.draw do
 
   resources :accounts
 
+  namespace :api do
+    namespace :v1 do
+      resource :account
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
