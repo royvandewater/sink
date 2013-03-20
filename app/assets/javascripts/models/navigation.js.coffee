@@ -1,6 +1,6 @@
 class Sink.Models.Navigation extends Backbone.Model
-  initialize: =>
-    @account = new Sink.Models.Account
+  initialize: (options={}) =>
+    @account = options.account
     @listenTo @account, 'logout', @destroy
 
   logout: =>

@@ -1,4 +1,7 @@
 class Account < ActiveRecord::Base
+  validates_uniqueness_of :username, :if => :username
+
+
   def active?
     rdio_token.present?
   end
