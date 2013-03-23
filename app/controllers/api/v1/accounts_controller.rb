@@ -9,6 +9,6 @@ class Api::V1::AccountsController < Api::V1::ApiController
 
   protected
   def account_params
-    params.permit :rdio_key
+    params.permit :rdio_key, :songs_to_sync
   end
 end

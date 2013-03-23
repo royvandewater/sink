@@ -4,6 +4,20 @@ class Sink.Views.Account extends Backbone.View
   initialize: =>
     @listenTo @model, 'change', @render
 
+  events:
+    'submit': 'onSubmit'
+
+  context: =>
+    _.defaults
+      cid: @cid
+      loading: @model.isLoading()
+      , @model.toJSON()
+
   render: =>
-    @$el.html @template @model.toJSON()
+    @$el.html @template @context()
     @$el
+
+  onSubmit: ($event) =>
+    $event.preventDefault()
+    @model.save songs_to_sync: @$('input.songs-to-sync').val()
+

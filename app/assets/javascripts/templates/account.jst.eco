@@ -1,1 +1,24 @@
-<h3><%= @username %></h3>
+<h3>Sync Settings</h3>
+
+<p>Manage what syncs to account: <strong><%= @username %></strong></p>
+
+<hr>
+
+<form class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="songs-to-sync-<%= @cid %>">Number of tracks:</label>
+    <div class="controls">
+      <input type="number" id="songs-to-sync-<%= @cid %>" class="songs-to-sync" value="<%= @songs_to_sync %>">
+    </div>
+  </div>
+  <div class="control-group">
+    <% if @loading: %>
+      <div class='control-label'>
+        <img src="/assets/ajax-loader.gif" alt="loading">
+      </div>
+    <% end %>
+    <div class="controls">
+      <button type="submit" class="btn">Save</button>
+    </div>
+  </div>
+</form>

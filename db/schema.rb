@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130320010759) do
+ActiveRecord::Schema.define(version: 20130323010133) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20130320010759) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "album_sync_limit"
+    t.integer  "songs_to_sync"
   end
 
 end
