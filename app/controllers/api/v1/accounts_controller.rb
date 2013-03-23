@@ -1,12 +1,10 @@
-class Api::V1::AccountsController < ApplicationController
-  respond_to :json
-
+class Api::V1::AccountsController < Api::V1::ApiController
   def show
-    respond_with current_user
+    respond_with current_account
   end
 
   def update
-    respond_with current_user.update_attributes account_params
+    respond_with current_account.update_attributes account_params
   end
 
   protected

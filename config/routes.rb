@@ -9,9 +9,12 @@ Sink::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resource :account
+      resource :account do
+        resources :tracks
+      end
     end
   end
 
+  get '/api/*path' => 'pages#not_found'
   get '/*path' => 'pages#show'
 end

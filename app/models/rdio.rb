@@ -1,11 +1,15 @@
 class Rdio < SimpleRdio
   def username
-    @username ||= currentUser['username']
+    @username ||= current_user['username']
   end
 
-  def currentUser
-    return @currentUser if @currentUser
-    response = call 'currentUser', :extras => 'username'
-    @currentUser = response['result']
+  protected
+  def call(method, arguments={})
+    result = super
+    result['result']
+  end
+
+  def current_user
+    @current_user ||= call 'currentUser', :extras => 'username'
   end
 end
