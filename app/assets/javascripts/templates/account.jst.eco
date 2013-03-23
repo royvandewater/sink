@@ -19,6 +19,14 @@
     <% end %>
     <div class="controls">
       <button type="submit" class="btn">Save</button>
+      <a href="#" class="sync btn btn-danger">Sync</a>
     </div>
   </div>
 </form>
+
+<div class="alert alert-error">
+  <h4>Important!</h4>
+  Pressing sync will whipe out all tracks currently marked for offline use and replace them
+  with your most played tracks, limited by the number of tracks you indicated. There is no way
+  to undo this action.
+</div>

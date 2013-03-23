@@ -4,8 +4,8 @@ class Sink.Models.Account extends Backbone.Model
 
   initialize: =>
     @on 'change:rdio_key', @onRdioKeyChange
-    @on 'request', => @set 'loading', true
-    @on 'sync', => @set 'loading', false
+    @on 'request', => @set loading: true
+    @on 'sync',    => @set loading: false, sync: false
 
   toJSON: =>
     _.omit super, 'loading'
