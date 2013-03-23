@@ -19,5 +19,5 @@ class Sink.Views.Account extends Backbone.View
 
   onSubmit: ($event) =>
     $event.preventDefault()
-    @model.save songs_to_sync: @$('input.songs-to-sync').val()
+    @model.save number_of_tracks_to_sync: @$('input.number-of-tracks').val()
 

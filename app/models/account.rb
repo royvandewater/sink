@@ -13,4 +13,29 @@ class Account < ActiveRecord::Base
   def rdio_token
     [rdio_key, rdio_secret] if rdio_key && rdio_secret
   end
+
+  def sync!
+    rdio.set_sync false, :keys => synced_track_keys
+    rdio.set_sync true, :keys => tracks_to_sync_keys
+  end
+
+  def synced_tracks
+    rdio.synced_tracks
+  end
+
+  def synced_track_keys
+    synced_tracks.map do |track|
+      track['key']
+    end
+  end
+
+  def tracks_to_sync
+    rdio.most_played_tracks :count => number_of_tracks_to_sync
+  end
+
+  def tracks_to_sync_keys
+    tracks_to_sync.map do |track|
+      track['key']
+    end
+  end
 end

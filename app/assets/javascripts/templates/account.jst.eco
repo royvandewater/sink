@@ -6,9 +6,9 @@
 
 <form class="form-horizontal">
   <div class="control-group">
-    <label class="control-label" for="songs-to-sync-<%= @cid %>">Number of tracks:</label>
+    <label class="control-label" for="number-of-tracks-<%= @cid %>">Number of tracks:</label>
     <div class="controls">
-      <input type="number" id="songs-to-sync-<%= @cid %>" class="songs-to-sync" value="<%= @songs_to_sync %>">
+      <input type="number" id="number-of-tracks-<%= @cid %>" class="number-of-tracks" value="<%= @number_of_tracks_to_sync %>">
     </div>
   </div>
   <div class="control-group">
