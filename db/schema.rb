@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130323155841) do
+ActiveRecord::Schema.define(version: 20130325140512) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20130323155841) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "number_of_tracks_to_sync"
+    t.boolean  "auto_sync",                default: false
   end
+
+  add_index "accounts", ["auto_sync"], name: "index_accounts_on_auto_sync"
 
 end

@@ -1,8 +1,9 @@
 class Account < ActiveRecord::Base
+  scope :with_auto_sync, -> {where :auto_sync => true}
   validates_uniqueness_of :username, :if => :username
 
   def self.sync_all!
-    Account.all.each do |account|
+    Account.with_auto_sync.each do |account|
       account.sync!
       sleep 1 # To avoid getting banned by Rdio
     end

@@ -19,7 +19,9 @@ class Sink.Views.Account extends Backbone.View
     @$el
 
   updateModel: =>
-    @model.set number_of_tracks_to_sync: @$('input.number-of-tracks').val()
+    @model.set 
+      auto_sync:                @$('input.auto-sync').prop('checked')
+      number_of_tracks_to_sync: @$('input.number-of-tracks').val()
 
   onClickSync: ($event) =>
     $event.preventDefault()

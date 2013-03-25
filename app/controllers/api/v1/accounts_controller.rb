@@ -11,6 +11,6 @@ class Api::V1::AccountsController < Api::V1::ApiController
 
   protected
   def account_params
-    params.permit :rdio_key, :number_of_tracks_to_sync
+    params.permit :auto_sync, :number_of_tracks_to_sync, :rdio_key
   end
 end

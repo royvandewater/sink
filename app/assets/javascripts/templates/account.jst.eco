@@ -11,10 +11,21 @@
       <input type="number" id="number-of-tracks-<%= @cid %>" class="number-of-tracks" value="<%= @number_of_tracks_to_sync %>">
     </div>
   </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <label class="checkbox">
+        <input type="checkbox" class="auto-sync" <%= 'checked="checked"' if @auto_sync %>>Auto Sync
+        <br>
+        <span class="label label-important">Read Warning Below</span>
+      </label>
+    </div>
+  </div>
+
   <div class="control-group">
     <% if @loading: %>
       <div class='control-label'>
-        <img src="/assets/ajax-loader.gif" alt="loading">
+        <img src="/ajax-loader.gif" alt="loading">
       </div>
     <% end %>
     <div class="controls">
