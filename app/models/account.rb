@@ -24,7 +24,7 @@ class Account < ActiveRecord::Base
 
   def sync!
     rdio.set_sync false, :keys => synced_track_keys
-    rdio.set_sync true, :keys => tracks_to_sync_keys
+    rdio.set_sync true,  :keys => tracks_to_sync_keys
   end
 
   def synced_tracks
@@ -38,7 +38,7 @@ class Account < ActiveRecord::Base
   end
 
   def tracks_to_sync
-    rdio.most_played_tracks :count => number_of_tracks_to_sync
+    rdio.most_played_tracks :count => number_of_tracks_to_sync.to_i
   end
 
   def tracks_to_sync_keys
