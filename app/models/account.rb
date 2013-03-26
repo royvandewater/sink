@@ -15,16 +15,13 @@ class Account < ActiveRecord::Base
   alias_method :active, :active?
 
   def rdio
-    @rdio ||= Rdio.new(RDIO_TOKEN, rdio_token)
-  end
-
-  def rdio_token
-    [rdio_key, rdio_secret] if rdio_key && rdio_secret
+    @rdio ||= Rdio.new :user_key => rdio_key, :user_sercret => rdio_secret
   end
 
   def sync!
-    rdio.set_sync false, :keys => synced_track_keys
-    rdio.set_sync true,  :keys => tracks_to_sync_keys
+    rdio.sync! number_of_tracks_to_sync
+    # rdio.set_sync false, :keys => synced_track_keys
+    # rdio.set_sync true,  :keys => tracks_to_sync_keys
   end
 
   def synced_tracks
