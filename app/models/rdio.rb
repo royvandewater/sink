@@ -1,4 +1,8 @@
 class Rdio < SimpleRdio
+  def initialize(app_token, user_token)
+    @simple_rdio = Rdio.new(app_token, user_token)
+  end
+
   def most_played_tracks(options={})
     call 'getTracksInCollection', :sort => 'playCount', :count => options[:count]
   end
@@ -26,8 +30,8 @@ class Rdio < SimpleRdio
   end
 
   protected
-  def call(method, arguments={})
-    result = super
+  def call(method, options={})
+    result = @simple_rdio.call method, options
     result['result']
   end
 

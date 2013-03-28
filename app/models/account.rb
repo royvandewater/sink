@@ -25,6 +25,7 @@ class Account < ActiveRecord::Base
   def sync!
     rdio.set_sync false, :keys => synced_track_keys
     rdio.set_sync true,  :keys => tracks_to_sync_keys
+    update_attributes :last_synced_at => Time.now
   end
 
   def synced_tracks
