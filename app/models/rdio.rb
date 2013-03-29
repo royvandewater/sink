@@ -1,6 +1,10 @@
-class Rdio < SimpleRdio
-  def initialize(app_token, user_token)
-    @simple_rdio = Rdio.new(app_token, user_token)
+class Rdio
+  delegate :begin_authentication,    :to => :@simple_rdio
+  delegate :complete_authentication, :to => :@simple_rdio
+  delegate :token,                   :to => :@simple_rdio
+
+  def initialize(app_token, user_token=nil)
+    @simple_rdio = SimpleRdio.new(app_token, user_token)
   end
 
   def most_played_tracks(options={})
