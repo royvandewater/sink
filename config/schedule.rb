@@ -23,6 +23,6 @@ env :GEM_PATH, ENV['GEM_PATH']
 env :RDIO_KEY, ENV['RDIO_KEY']
 env :RDIO_SECRET, ENV['RDIO_SECRET']
 
-every 1.minutes do
+every 1.days do
   rake 'accounts:sync'
 end

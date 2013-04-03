@@ -28,6 +28,7 @@ class Account < ActiveRecord::Base
     update_attributes :last_synced_at => Time.now
   rescue => e
     Rails.logger.error "Account failed to sync. account.id: '#{id}'"
+    Rails.logger.warn  e.backtrace
   end
 
   def synced_tracks
