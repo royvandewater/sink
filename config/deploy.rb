@@ -1,3 +1,6 @@
+default_environment['RDIO_KEY']    = ENV['RDIO_KEY']
+default_environment['RDIO_SECRET'] = ENV['RDIO_SECRET']
+
 require "bundler/capistrano"
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
