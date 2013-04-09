@@ -5,6 +5,6 @@ class Api::V1::ApiController < ApplicationController
 
   protected
   def require_current_account
-    head :forbidden unless current_account.present?
+    head :forbidden, :location => new_account_url unless current_account.present?
   end
 end

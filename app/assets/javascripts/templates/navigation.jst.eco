@@ -2,9 +2,13 @@
   <ul class="nav nav-pills pull-right">
     <li><a href="/">Home</a></li>
     <li>
-      <form class="logout">
-        <input type="submit" value="Logout" class="btn" />
-      </form>
+      <% if @username: %>
+        <form class="logout">
+          <input type="submit" value="Logout" class="btn" />
+        </form>
+      <% else: %>
+        <a href="/accounts/new">Login</a>
+      <% end %>
     </li>
   </ul>
   <h3>

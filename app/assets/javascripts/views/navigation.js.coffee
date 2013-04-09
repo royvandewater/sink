@@ -1,6 +1,9 @@
 class Sink.Views.Navigation extends Backbone.View
   template: JST['templates/navigation']
 
+  initialize: =>
+    @listenTo @model, 'change', @render
+
   events:
     'submit .logout': 'onLogout'
 
@@ -10,3 +13,4 @@ class Sink.Views.Navigation extends Backbone.View
   onLogout: ($event) =>
     $event.preventDefault()
     @model.logout()
+
