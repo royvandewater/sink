@@ -32,11 +32,6 @@ class AccountsController < ApplicationController
     redirect_to root_url
   end
 
-  def update
-    @account.update_attributes account_params
-    redirect_to root_url
-  end
-
   protected
   def find_account
     @account = Account.where(:id => params[:id]).first

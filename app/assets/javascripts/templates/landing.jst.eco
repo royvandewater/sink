@@ -1,7 +1,10 @@
 <div class="jumbotron">
   <h1>Auto sync your best Rdio music!</h1>
   <p class="lead">Reduce mobile data usage and ensure you're never caught without good music again.</p>
-  <a class="btn btn-large btn-primary" href="/accounts/new">Try It Now!</a>
+  <form action="accounts" class="form-signin" method="POST">
+    <input type="hidden" value="<%= authenticity_token %>" name="authenticity_token" />
+    <input type="submit" value="Login with Rdio" class="btn btn-large btn-primary" />
+  </form>
 </div>
 
 <hr>

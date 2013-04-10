@@ -6,8 +6,6 @@
         <form class="logout">
           <input type="submit" value="Logout" class="btn" />
         </form>
-      <% else: %>
-        <a href="/accounts/new">Login</a>
       <% end %>
     </li>
   </ul>
