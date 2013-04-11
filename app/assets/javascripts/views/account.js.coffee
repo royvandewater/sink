@@ -15,7 +15,7 @@ class Sink.Views.Account extends Backbone.View
 
   render: =>
     @$el.html @template @context()
-    @$('select.sync-type').val @model.get 'sync-type'
+    @$('select.sync-type').val @model.get 'sync_type'
     @$el
 
   updateModel: =>

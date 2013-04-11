@@ -12,4 +12,3 @@ class Sink.Models.Account extends Backbone.Model
 
   onRdioKeyChange: =>
     @trigger 'logout' unless @get 'rdio_key'
-
