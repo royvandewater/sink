@@ -11,6 +11,10 @@ class Rdio
     call 'getTracksInCollection', :sort => 'playCount', :count => options[:count]
   end
 
+  def recently_added_tracks(options={})
+    call 'getTracksInCollection', :sort => 'dateAdded', :count => options[:count]
+  end
+
   def set_sync(sync, options={})
     call 'setAvailableOffline', :offline => sync, :keys => options[:keys].join(',')
   end

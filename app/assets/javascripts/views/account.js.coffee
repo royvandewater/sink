@@ -11,17 +11,18 @@ class Sink.Views.Account extends Backbone.View
   context: =>
     _.defaults
       cid: @cid
-      loading: @model.isLoading()
       , @model.toJSON()
 
   render: =>
     @$el.html @template @context()
+    @$('select.sync-type').val @model.get 'sync-type'
     @$el
 
   updateModel: =>
     @model.set 
       auto_sync:                @$('input.auto-sync').prop('checked')
       number_of_tracks_to_sync: @$('input.number-of-tracks').val()
+      sync_type:                @$('select.sync-type').val()
 
   onClickSync: ($event) =>
     $event.preventDefault()

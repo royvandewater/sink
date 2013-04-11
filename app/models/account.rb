@@ -1,6 +1,8 @@
 class Account < ActiveRecord::Base
   scope :with_auto_sync, -> {where :auto_sync => true}
+
   validates_uniqueness_of :username, :if => :username
+
 
   def self.sync_all!
     Account.with_auto_sync.each do |account|
@@ -42,7 +44,14 @@ class Account < ActiveRecord::Base
   end
 
   def tracks_to_sync
-    rdio.most_played_tracks :count => number_of_tracks_to_sync.to_i
+    case sync_type
+    when 'playCount' 
+      rdio.most_played_tracks :count => number_of_tracks_to_sync.to_i
+    when 'dateAdded'
+      rdio.recently_added_tracks :count => number_of_tracks_to_sync.to_i
+    else
+      raise "Invalid sync_type: #{sync_type}"
+    end
   end
 
   def tracks_to_sync_keys

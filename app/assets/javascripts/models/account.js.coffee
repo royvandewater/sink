@@ -7,12 +7,6 @@ class Sink.Models.Account extends Backbone.Model
     @on 'request', => @set loading: true
     @on 'sync',    => @set loading: false, sync: false
 
-  toJSON: =>
-    _.omit super, 'loading'
-
-  isLoading: =>
-    @get 'loading'
-
   logout: =>
     @save {rdio_key: null}, wait: true
 
