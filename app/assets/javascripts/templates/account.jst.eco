@@ -18,6 +18,7 @@
       <select id="sync-type-<%= @cid %>" class="sync-type">
         <option value="playCount">Most played tracks</option>
         <option value="dateAdded">Most recently added tracks</option>
+        <option value="both">Half and Half</option>
       </select>
     </div>
   </div>

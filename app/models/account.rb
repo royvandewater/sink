@@ -16,12 +16,20 @@ class Account < ActiveRecord::Base
   end
   alias_method :active, :active?
 
+  def most_played_tracks(count)
+    rdio.most_played_tracks :count => count
+  end
+
   def rdio
     @rdio ||= Rdio.new(RDIO_TOKEN, rdio_token)
   end
 
   def rdio_token
     [rdio_key, rdio_secret] if rdio_key && rdio_secret
+  end
+
+  def recently_added_tracks(count)
+    rdio.recently_added_tracks :count => count
   end
 
   def sync!
@@ -44,11 +52,15 @@ class Account < ActiveRecord::Base
   end
 
   def tracks_to_sync
+    count = number_of_tracks_to_sync.to_i
+
     case sync_type
     when 'playCount' 
-      rdio.most_played_tracks :count => number_of_tracks_to_sync.to_i
+      most_played_tracks count
     when 'dateAdded'
-      rdio.recently_added_tracks :count => number_of_tracks_to_sync.to_i
+      recently_added_tracks count
+    when 'both'
+      most_played_tracks(count / 2) + recently_added_tracks(count / 2)
     else
       raise "Invalid sync_type: #{sync_type}"
     end
