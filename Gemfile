@@ -21,4 +21,5 @@ end
 group :development do
   gem 'rspec-rails'
   gem 'debugger'
+  gem 'coffee-rails-source-maps'
 end
