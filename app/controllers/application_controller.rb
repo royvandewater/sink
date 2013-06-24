@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_account
 
   def current_account
-    @current_account ||= Account.where(:rdio_key => session[:rdio_key]).first if session[:rdio_key]
+    @current_account ||= Account.where(:session_token => session[:session_token]).first if session[:session_token]
   end
 end

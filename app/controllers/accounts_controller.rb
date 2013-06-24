@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
         :username    => rdio.username,
       })
 
-      session[:rdio_key] = @account.rdio_key
+      session[:session_token] = @account.session_token
     end
 
     redirect_to root_url
