@@ -1,8 +1,10 @@
+require 'securerandom'
+
 class Account < ActiveRecord::Base
   scope :with_auto_sync, -> {where :auto_sync => true}
 
   validates_uniqueness_of :username, :if => :username
-
+  before_save :generate_session_token!, :if => :rdio_key_changed?
 
   def self.sync_all!
     Account.with_auto_sync.each do |account|
@@ -15,6 +17,10 @@ class Account < ActiveRecord::Base
     rdio_token.present?
   end
   alias_method :active, :active?
+
+  def generate_session_token!
+    self.session_token = SecureRandom.base64 20
+  end
 
   def most_played_tracks(count)
     rdio.most_played_tracks :count => count

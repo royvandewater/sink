@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130411162559) do
+ActiveRecord::Schema.define(version: 20130624164751) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 20130411162559) do
     t.boolean  "auto_sync",                default: false
     t.datetime "last_synced_at"
     t.string   "sync_type"
+    t.string   "session_token"
   end
 
   add_index "accounts", ["auto_sync"], name: "index_accounts_on_auto_sync"
+  add_index "accounts", ["session_token"], name: "index_accounts_on_session_token"
 
 end
