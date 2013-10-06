@@ -8,14 +8,14 @@
   <div class="form-group">
     <label class="control-label col-lg-2" for="number-of-tracks-<%= @cid %>">Number of tracks:</label>
     <div class="col-lg-10">
-      <input type="number" id="number-of-tracks-<%= @cid %>" class="number-of-tracks" value="<%= @number_of_tracks_to_sync %>">
+      <input type="number" id="number-of-tracks-<%= @cid %>" class="number-of-tracks form-control" value="<%= @number_of_tracks_to_sync %>">
     </div>
   </div>
 
   <div class="form-group">
     <label class="control-label col-lg-2" for="sync-type-<%= @cid %>">Sync your:</label>
     <div class="col-lg-10">
-      <select id="sync-type-<%= @cid %>" class="sync-type">
+      <select id="sync-type-<%= @cid %>" class="sync-type form-control">
         <option value="playCount">Most played tracks</option>
         <option value="dateAdded">Most recently added tracks</option>
         <option value="both">Half and Half</option>
@@ -28,7 +28,7 @@
       <label class="checkbox">
         <input type="checkbox" class="auto-sync" <%= 'checked="checked"' if @auto_sync %>>Auto Sync
         <br>
-        <span class="label label-important">Read Warning Below</span>
+        <span class="label label-danger">Read Warning Below</span>
       </label>
     </div>
   </div>
@@ -46,9 +46,11 @@
   </div>
 </form>
 
-<div class="alert alert-error">
+<div class="alert alert-danger">
   <h4>Important!</h4>
-  Pressing sync will whipe out all tracks currently marked for offline use and replace them
+  Pressing sync will wipe out all tracks currently marked for offline use and replace them
   with your most played tracks, limited by the number of tracks you indicated. There is no way
   to undo this action.
+  <br><br>
+  Auto Sync means that Sink will perform this action every night at midnight.
 </div>
