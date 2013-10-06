@@ -8,6 +8,7 @@ gem 'whenever'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
+gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -5,16 +5,16 @@
 <hr>
 
 <form class="form-horizontal">
-  <div class="control-group">
-    <label class="control-label" for="number-of-tracks-<%= @cid %>">Number of tracks:</label>
-    <div class="controls">
+  <div class="form-group">
+    <label class="control-label col-lg-2" for="number-of-tracks-<%= @cid %>">Number of tracks:</label>
+    <div class="col-lg-10">
       <input type="number" id="number-of-tracks-<%= @cid %>" class="number-of-tracks" value="<%= @number_of_tracks_to_sync %>">
     </div>
   </div>
 
-  <div class="control-group">
-    <label class="control-label" for="sync-type-<%= @cid %>">Sync your:</label>
-    <div class="controls">
+  <div class="form-group">
+    <label class="control-label col-lg-2" for="sync-type-<%= @cid %>">Sync your:</label>
+    <div class="col-lg-10">
       <select id="sync-type-<%= @cid %>" class="sync-type">
         <option value="playCount">Most played tracks</option>
         <option value="dateAdded">Most recently added tracks</option>
@@ -23,8 +23,8 @@
     </div>
   </div>
 
-  <div class="control-group">
-    <div class="controls">
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
       <label class="checkbox">
         <input type="checkbox" class="auto-sync" <%= 'checked="checked"' if @auto_sync %>>Auto Sync
         <br>
@@ -33,13 +33,13 @@
     </div>
   </div>
 
-  <div class="control-group">
-    <% if @loading: %>
-      <div class='control-label'>
-        <img src="/ajax-loader.gif" alt="loading">
-      </div>
-    <% end %>
-    <div class="controls">
+  <div class="form-group">
+    <div class='control-label col-lg-2'>
+      <% if @loading: %>
+          <img src="/ajax-loader.gif" alt="loading">
+      <% end %>
+    </div>
+    <div class="col-lg-10">
       <button type="submit" class="btn">Save</button>
       <a href="#" class="sync btn btn-danger">Sync</a>
     </div>
